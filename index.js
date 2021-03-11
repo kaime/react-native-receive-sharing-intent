@@ -40,7 +40,11 @@ export default class ReceiveSharingIntentModule {
         }).catch(e=>errorHandler(e));
         }else{
             ReceiveSharingIntent.getFileNames().then(fileObject => {
-                let files = Object.keys(fileObject).map((k) => fileObject[k])
+                let files = null
+
+                if (fileObject) {
+                    files = Object.keys(fileObject).map((k) => fileObject[k])
+                }
                 handler(files);
             }).catch(e=>{
                 errorHandler(e)
